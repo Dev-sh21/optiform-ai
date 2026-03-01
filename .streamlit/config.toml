@@ -1,6 +1,4 @@
 [server]
-headless = true
-port = 8080
 enableCORS = false
 
 [theme]

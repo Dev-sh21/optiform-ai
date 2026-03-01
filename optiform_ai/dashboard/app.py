@@ -6,8 +6,9 @@ import pandas as pd
 import sys
 import os
 
-# Ensure the project root is in sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+# Ensure the project root is in sys.path for module imports
+if os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")) not in sys.path:
+    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 from optiform_ai.data_generation import generate_synthetic_formwork_data
 from optiform_ai.optimization_engine import get_clusters, optimize_formwork
