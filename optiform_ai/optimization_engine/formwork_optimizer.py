@@ -134,7 +134,11 @@ def optimize_formwork(
 
     model += inventory_cost + reuse_cost
 
-    model.solve(solver or pulp.PULP_CBC_CMD(msg=False))
+    try:
+        model.solve(solver or pulp.PULP_CBC_CMD(msg=False))
+    except (pulp.PulpSolverError, Exception):
+        # Fallback to default solver if PULP_CBC_CMD fails on Streamlit Cloud environment
+        model.solve()
 
     plan_rows = []
     total_material_cost = 0.0
